@@ -81,7 +81,7 @@ services:
     image: ticket-4672
     container_name: ticket-4672
     ports: 
-      - 8008:8008
+      - 8014:8014
     env_file: .env
     depends_on:
       - mongo
@@ -91,7 +91,7 @@ services:
     image: types-4672
     container_name: types-4672
     ports: 
-      - 8009:8009
+      - 8015:8015
     env_file: .env
     depends_on:
       - mongo
@@ -101,7 +101,7 @@ services:
     image: severity-4672
     container_name: severity-4672
     ports: 
-      - 8010:8010
+      - 8016:8016
     env_file: .env
     depends_on:
       - mongo
