@@ -1,0 +1,69 @@
+<h2 class="screen-align">Searchupdateticket</h2>
+<div id="template-ip0g" class="row">
+    <div id="template-i2cc" class="cell">
+        <label id="template-iera" class="label">name</label>
+        <input id="template-icn5y" [(ngModel)]="tickets.name" [ngModelOptions]="{standalone: true}"
+        class="input form-control" />
+    </div>
+    <div id="template-iecx" class="cell">
+        <label id="template-iwhmk" class="label">description</label>
+        <input id="template-icuhj" [(ngModel)]="tickets.description"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+    <div id="template-ih5x" class="cell">
+        <label id="template-i4fcm" class="label">groups</label>
+        <input id="template-idjgh" [(ngModel)]="tickets.groups"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+</div>
+<div id="template-i6gl" class="row">
+    <div id="template-iobh" class="cell">
+        <label id="template-izs2m" class="label">types</label>
+        <div id="template-i26wl" class="">
+            <ng-select id="template-itz1l" name="dynamicdropdown_template-itz1l" [searchable]="true"
+            [virtualScroll]="true" [items]="typesitemArray" bindLabel="name" bindValue="name"
+            [(ngModel)]="tickets.types" [ngModelOptions]="{standalone: true}" (click)="typesGpGetAllValues()"
+            class="form-control"></ng-select>
+        </div>
+        <button id="template-iizhv" class="button btn btn-primary">search</button>
+    </div>
+    <div id="template-ieky" class="cell">
+        <label id="template-iiz8m" class="label">severity</label>
+        <div id="template-irwvn" class="">
+            <ng-select id="template-i15jg" name="dynamicdropdown_template-i15jg" [searchable]="true"
+            [virtualScroll]="true" [items]="severityitemArray" bindLabel="name" bindValue="name"
+            [(ngModel)]="tickets.severity" [ngModelOptions]="{standalone: true}" (click)="severityGpGetAllValues()"
+            class="form-control"></ng-select>
+        </div>
+    </div>
+    <div id="template-ivs1" class="cell"></div>
+</div>
+<div name="grid_template-i7i81" class="">
+    <table id="table" class="table table-bordered  table-striped" data-show-header="true"
+    data-pagination="true" data-id-field="name">
+        <thead class="table table-hover">
+            <tr>
+                <th *ngFor="let column of columnDefs">{{column.headerName}}</th>
+            </tr>
+        </thead>
+        <tbody class="table-design" *ngIf="rowData.length==0">
+            <td style="text-align: center;" colspan="5">No Data Found</td>
+        </tbody>
+        <tbody class="table-design" *ngIf="rowData.length>0">
+            <tr (click)="onSelectionChanged(values)" *ngFor="let values of rowData | slice: (page-1) * paginationPageSize :(page-1) * paginationPageSize + paginationPageSize"
+            style="cursor: pointer;">
+                <td>{{ values.name }}</td>
+                <td>{{ values.description }}</td>
+                <td>{{ values.groups }}</td>
+                <td>{{ values.types }}</td>
+                <td>{{ values.severity }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+        <ngb-pagination class="d-flex justify-content-start" [(page)]="page" [maxSize]="5"
+        [rotate]="true" [pageSize]="paginationPageSize" [collectionSize]="rowData.length"
+        [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>
+<div id="myGrid" class=""></div>

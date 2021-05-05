@@ -1,0 +1,50 @@
+---
+openapi: 3.0.0
+info:
+   version: 1.3.0
+   title: newticketapp19 open api specification
+   description: severity API
+   termsOfService: http://api_url/terms/
+   contact:
+      name: ContactName
+      email: hello@wolox.co
+      url: https://www.wolox.com.ar/
+   license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+   - url: http://localhost:8007
+     description: severity
+tags:
+- name: severity
+paths:
+   "/severity":
+      post:
+         tags:
+         -  severity
+         description: GpCreate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/severity"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+components:
+   schemas:
+      severity:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description

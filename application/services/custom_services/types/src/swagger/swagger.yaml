@@ -1,0 +1,50 @@
+---
+openapi: 3.0.0
+info:
+   version: 1.3.0
+   title: newticketapp19 open api specification
+   description: types API
+   termsOfService: http://api_url/terms/
+   contact:
+      name: ContactName
+      email: hello@wolox.co
+      url: https://www.wolox.com.ar/
+   license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+   - url: http://localhost:8006
+     description: types
+tags:
+- name: types
+paths:
+   "/types":
+      post:
+         tags:
+         -  types
+         description: GpCreate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/types"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+components:
+   schemas:
+      types:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description

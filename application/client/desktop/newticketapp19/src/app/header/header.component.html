@@ -1,0 +1,112 @@
+<nav id="template-i090p" class="navbar navbar-inverse">
+    <div id="template-iyoc4" class="navbar-header">
+<span onclick="openNav()" id="in2oj" class="">
+☰</span>
+
+        <button type="button" data-toggle="collapse" data-target="#myNavbar"
+        id="template-ioico" class="navbar-toggle">
+<span id="template-iy169" class="icon-bar">
+</span>
+
+<span id="template-ivo7o" class="icon-bar">
+</span>
+
+<span id="template-ihry1" class="icon-bar">
+</span>
+
+        </button>
+<a [routerLink]="['/home']" id="template-io1pk" class="navbar-brand">
+GEPPETTO</a>
+
+    </div>
+    <div id="myNavbar" class="collapse navbar-collapse">
+        <ul id="template-ionqz" class="nav navbar-nav navbar-right">
+            <li id="template-ivm2e" class="active">
+<a [routerLink]="['/']" id="template-iz682" class="">
+Home</a>
+
+            </li>
+        </ul>
+    </div>
+    <div id="mySidenav" class="sidenav">
+<a [routerLink]="['javascript:void(0)']" onclick="closeNav()" id="template-if7ki"
+        class="closebtn">
+×</a>
+
+        <div id="MainMenu" class="">
+            <div class="list-group panel"><a class="list-group-item list-group-item-success" *ngIf='userId!=null'
+                [routerLink]="['/home']">{{'source.home' | i18next}}</a>
+            </div>
+            <div class="list-group panel" *ngIf='isAdminUser'><a class="list-group-item list-group-item-success" [routerLink]="['/admin']">{{'source.admin' | i18next}}</a>
+            </div>
+            <div class="list-group panel" *ngIf="isApplicable('addticket') && userId"> <a href="#ticket" class="list-group-item list-group-item-success" data-toggle="collapse"
+                data-parent="#MainMenu">ticket <i class="fa fa-caret-down"></i></a>
+
+                <div
+                class="collapse" id="ticket">
+<a class="list-group-item" [routerLink]="['/addticket']">{{'source.addticket' | i18next}}</a>
+
+                    <a
+                    class="list-group-item" [routerLink]="['/alltickets']">{{'source.alltickets' | i18next}}</a>
+<a class="list-group-item" [routerLink]="['/updateticket']">{{'source.updateticket' | i18next}}</a>
+
+                        <a
+                        class="list-group-item" [routerLink]="['/searchupdateticket']">{{'source.searchupdateticket' | i18next}}</a>
+            </div>
+        </div>
+        <div class="list-group panel" *ngIf="isApplicable('addtypes') && userId"> <a href="#types" class="list-group-item list-group-item-success" data-toggle="collapse"
+            data-parent="#MainMenu">types <i class="fa fa-caret-down"></i></a>
+
+            <div
+            class="collapse" id="types">
+<a class="list-group-item" [routerLink]="['/addtypes']">{{'source.addtypes' | i18next}}</a>
+
+        </div>
+    </div>
+    <div class="list-group panel" *ngIf="isApplicable('addseverity') && userId"> <a href="#severity" class="list-group-item list-group-item-success" data-toggle="collapse"
+        data-parent="#MainMenu">severity <i class="fa fa-caret-down"></i></a>
+
+        <div
+        class="collapse" id="severity">
+<a class="list-group-item" [routerLink]="['/addseverity']">{{'source.addseverity' | i18next}}</a>
+
+    </div>
+    </div>
+    <div class="list-group panel"><a class="list-group-item list-group-item-success" *ngIf='userId!=null'
+        (click)="logout()">{{'source.logout' | i18next}}</a>
+    </div>
+    <li><a class="list-group-item list-group-item-success text" *ngIf='userId==null'
+        [routerLink]="['/login']">{{'source.login' | i18next}}</a>
+    </li>
+    <div class="list-group panel" *ngIf="isApplicable('authorization') && userId"><a class="list-group-item list-group-item-success" [routerLink]="['/authorization']">{{'source.authorization' | i18next}}</a>
+    </div>
+    <div class="list-group panel" *ngIf="isApplicable('manageroles') && userId"><a class="list-group-item list-group-item-success" [routerLink]="['/manageroles']">{{'source.manageroles' | i18next}}</a>
+    </div>
+    <div class="list-group panel" *ngIf="isApplicable('manageusers') && userId"> <a class="list-group-item list-group-item-success" [routerLink]="['/manageusers']">{{'source.manageusers' | i18next}}</a>
+
+    </div>
+    <li> <a href="#translator" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-success dropdown-toggle text"> {{'source.selectLanguage' | i18next }} </a>
+
+        <ul
+        class="collapse list-unstyled" id="translator">
+            <li> <a class="list-group-item text" *ngFor="let lang of languages" (click)='confirmLangModel(lang)'> {{'languages.' + lang | i18nextCap }}</a>
+
+            </li>
+            </ul>
+    </li>
+    </div>
+    </div>
+</nav>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'top': '100px','display': confirmLangChangeModal}">
+    <div class="modal-dialog modal-sm" role="dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>language change cause you to re-login</p>
+            </div>
+            <div class="modal-footer" style="padding: 5px">
+                <button type="button" (click)="confirmLangChange()" class="btn btn-default">Confirm</button>
+                <button type="button" (click)="onCloseHandled()" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

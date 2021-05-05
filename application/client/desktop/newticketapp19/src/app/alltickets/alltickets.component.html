@@ -1,0 +1,29 @@
+<h2 class="screen-align">Alltickets</h2>
+<div name="grid_template-izbj" class="">
+    <table id="table" class="table table-bordered  table-striped" data-show-header="true"
+    data-pagination="true" data-id-field="name">
+        <thead class="table table-hover">
+            <tr>
+                <th *ngFor="let column of columnDefs">{{column.headerName}}</th>
+            </tr>
+        </thead>
+        <tbody class="table-design" *ngIf="rowData.length==0">
+            <td style="text-align: center;" colspan="5">No Data Found</td>
+        </tbody>
+        <tbody class="table-design" *ngIf="rowData.length>0">
+            <tr *ngFor="let values of rowData | slice: (page-1) * paginationPageSize :(page-1) * paginationPageSize + paginationPageSize">
+                <td>{{ values.name }}</td>
+                <td>{{ values.description }}</td>
+                <td>{{ values.groups }}</td>
+                <td>{{ values.types }}</td>
+                <td>{{ values.severity }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+        <ngb-pagination class="d-flex justify-content-start" [(page)]="page" [maxSize]="5"
+        [rotate]="true" [pageSize]="paginationPageSize" [collectionSize]="rowData.length"
+        [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>
+<div id="myGrid" class=""></div>
